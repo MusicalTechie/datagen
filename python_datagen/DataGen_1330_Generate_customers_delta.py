@@ -1,0 +1,109 @@
+# ==================================================
+# = File:        DataGen_1330_Generate_customers_delta.py
+# = Purpose:     Generate a small delta of new CUSTOMERs (count between min and max)
+# =              and store in v_parm_path_customers_delta.
+# ==================================================
+# = Notes, Warnings, Requirements:
+# = ------------------------------------------------
+# =  - Same type of data generation as initial customers but limited by DG_PERIOD_DELTA_CUST_MIN/MAX.
+# =
+# = Dates:
+# = ------------------------------------------------
+# =  - Created:     2026-MAR-07
+# =  - Updated:
+# ==================================================
+
+import csv
+import json
+import logging
+import os
+import random
+import sys
+from time import sleep
+
+v_current_procedure_name = 'Generate CUSTOMERS: DELTA'
+
+logging.basicConfig(level=logging.DEBUG, format="%(message)s")
+logging.debug("==================================================")
+logging.debug("= " + v_current_procedure_name + ": START")
+logging.debug("==================================================")
+logging.debug("\n" * 2)
+
+from DataGen_1110_Load_config_main import *
+sys.stdout.flush()
+sys.stderr.flush()
+logging.debug("\n" * 2)
+sleep(1)
+
+from DataGen_shared_hierarchy_csv import generate_hierarchy_csv
+
+# --- Build next index per prefix from merged customers (ShipToLocation = fifth column, index 4) ---
+v_shipto_col_idx = 4
+v_list_customers_config = json.loads(v_parm_dg_customers) if isinstance(v_parm_dg_customers, str) else v_parm_dg_customers
+v_prefixes_customers = []
+for v_elt in v_list_customers_config:
+    if v_elt.get("LocPrefix"):
+        v_prefixes_customers.append(str(v_elt["LocPrefix"]))
+v_prefixes_customers = list(dict.fromkeys(v_prefixes_customers))  # unique, preserve order
+v_max_per_prefix = {p: 0 for p in v_prefixes_customers}
+if os.path.isfile(v_parm_path_customers_merged):
+    with open(v_parm_path_customers_merged, mode='r', newline='', encoding='utf-8') as f:
+        v_reader = csv.reader(f)
+        v_rows = []
+        for v_i, v_row in enumerate(v_reader):
+            if v_i == 0:
+                continue
+            if len(v_row) > v_shipto_col_idx:
+                v_rows.append(v_row)
+    v_rows.sort(key=lambda r: (r[v_shipto_col_idx] if len(r) > v_shipto_col_idx else ""))
+    for v_row in v_rows:
+        v_shipto_val = v_row[v_shipto_col_idx].strip()
+        for v_p in v_prefixes_customers:
+            if v_shipto_val.startswith(v_p):
+                v_suffix = v_shipto_val[len(v_p):].lstrip("0") or "0"
+                try:
+                    v_num = int(v_suffix)
+                    if v_num > v_max_per_prefix.get(v_p, 0):
+                        v_max_per_prefix[v_p] = v_num
+                except ValueError:
+                    pass
+                break
+v_start_index_per_prefix = {p: v_max_per_prefix.get(p, 0) + 1 for p in v_prefixes_customers}
+
+v_min = int(v_parm_dg_period_delta_cust_min)
+v_max = int(v_parm_dg_period_delta_cust_max)
+v_n = random.randint(v_min, v_max) if v_max >= v_min else v_min
+
+v_rowCounter_customers = 0
+if v_n > 0:
+    v_output_dir = os.path.dirname(v_parm_path_customers_delta)
+    if v_output_dir:
+        os.makedirs(v_output_dir, exist_ok=True)
+    logging.debug("Writing CUSTOMERS delta CSV to: " + str(v_parm_path_customers_delta) + " (max " + str(v_n) + " rows)")
+    v_rowCounter_customers = generate_hierarchy_csv(
+        v_parm_dg_cust_hier_names,
+        v_parm_dg_cust_hier_lvls,
+        v_parm_dg_customers,
+        v_parm_path_customers_delta,
+        max_data_rows=v_n,
+        start_index_per_prefix=v_start_index_per_prefix,
+    )
+else:
+    hier_names_list = json.loads(v_parm_dg_cust_hier_names) if isinstance(v_parm_dg_cust_hier_names, str) else v_parm_dg_cust_hier_names
+    v_output_dir = os.path.dirname(v_parm_path_customers_delta)
+    if v_output_dir:
+        os.makedirs(v_output_dir, exist_ok=True)
+    with open(v_parm_path_customers_delta, mode='w', newline='') as f:
+        writer = csv.writer(f, quoting=csv.QUOTE_ALL)
+        for parent_element in hier_names_list:
+            writer.writerow(parent_element.values())
+    logging.debug("Writing CUSTOMERS delta CSV (0 rows): " + str(v_parm_path_customers_delta))
+
+logging.debug("\n" * 2)
+logging.debug("Total new CUSTOMER delta rows created: " + str(v_rowCounter_customers))
+logging.debug("\n" * 2)
+logging.debug("==================================================")
+logging.debug("= " + v_current_procedure_name + ": END")
+logging.debug("==================================================")
+logging.debug("\n" * 2)
+sleep(1)

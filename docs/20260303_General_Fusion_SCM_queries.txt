@@ -1,0 +1,119 @@
+Demand Plan Setup Steps
+==================================================
+- generate data
+- load FBDI
+- go to Plan Inputs
+ - collect planning data from flat files
+ - confirm items are present
+ - confirm measures are present (bookings history, bookings, final bookings history, shipment history)
+- go to Demand Planning
+ - create and/or open demand plan (e.g. ERP_Training)
+ - top-bar, Actions, scroll bottom, Manage tables, graphs, and analysis sets
+ - create a new table ("+")
+   - Name:	"ERPtraining_Hist_n_FC"
+   - Group:	Demand Planning
+   - Enable in:	Demand Management
+   - Measures menu:	Bookings History, Bookings History Value, Adjusted Bookings History, Final Bookings History
+   - Hierarchies:	Gregorian Calendar, Inv_Items, Enterprise, Customer, Demand Class
+   - Members:		Why is "Time" limited to 2025 and 2026?
+   - 			Hierarchy: Inv_Items (see sample items)
+   - 			Organization: leave as default "Enterprise"
+   - 			Customer: select the 3 noted in the next section
+   - 			Demand Class: leave at default of "DC1"
+   - 			Segment: leave it alone (defaults to Feesers_Seg_Grp)
+   - Measure filters:	none
+   - Layout:		default
+   - Comparison Options:	leave alone
+  - Create a layout:
+
+Sample CUSTOMERS
+==================================================
+Accelworks Pvt Ltd
+Business World
+Computer Service and Rentals
+
+
+Sample ITEMS
+==================================================
+AS06502		no
+AS09743		no
+AS09744		no
+AS4751100		yes
+AS4751300		yes
+AS6647331	no
+AS6647332	no
+AS6647431		yes
+AS6647432		yes
+AS6647434		yes
+AS6647435		yes
+AS6647436		yes
+AS6647437	no
+AS6647439		yes
+AS6647440		yes
+AS6648331		yes
+AS6648333		yes
+AS6648334		yes
+AS6648335		yes
+AS85030		no
+CM42049		no
+CM42050		no
+CM42051		no
+CM42052		no
+CM42053		no
+CM42057		no
+CM42058		no
+CM42059		no
+CM50008		no
+CM50009		no
+CM50010			yes
+CM50012			yes
+CM50013		no
+CM50014			yes
+CM53035		no
+CM53036		no
+CM53058			yes
+CM53059			yes
+CM53060		no
+
+
+
+Actions
+==================================================
+- build an Excel tool to acquire all ITEMS, ORGS, CUSTOMERS, and CUSTOMER SITES
+- perhaps try this in VBCS
+- qualify by ATO, PTO, etc (only need Finished Goods)
+
+
+
+Questions
+==================================================
+- in Vision, hierarchies/categories like "Category Level 10160".  What and why?
+- why in the demand plan, members, is "time" limited to 2025 and 2026
+
+
+
+
+
+
+Questions
+==========
+In an Oracle Fusion SCM environment, in the "Supply Chain Planning" and "Demand Planning" area:
+
+- In "Plan Options", under "Plan Organizations", what is the "Level Members" section and why do the options only include "organizations".
+
+- In "Plan Options", under "Plan Items", what type of object is in the hierarchy drop-down (perhaps "categories" or "category sets"), and what type of objects are in the "level members" drop-down?
+
+
+Create a table in Demand Planning
+==========
+In Oracle Fusion SCM → Supply Chain Planning → Demand Planning, you do not create a physical database “table” from scratch. Demand Planning works off:
+	- Pre-seeded fact tables (planning measures)
+	- Dimension hierarchies (Item, Organization, Customer, Time, etc.)
+	- Measures inside a Planning Measure Catalog
+
+What you are really creating is either:
+	- A new measure (to hold bookings history or a custom calculation), or
+	- A new table layout (view) in a worksheet to display measures across a time range.
+
+Below is the correct minimal path for your specific objective:
+	- Show Bookings History (24 months past) + Forecast (12 months future)

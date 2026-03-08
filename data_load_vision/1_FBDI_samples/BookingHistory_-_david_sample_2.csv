@@ -1,0 +1,9 @@
+SR_INSTANCE_CODE,PLAN_NAME,MEASURE_NAME,PRD_LVL_NAME,PRD_LVL_MEMBER_NAME,ORG_LVL_NAME,ORG_LVL_MEMBER_NAME,CUS_LVL_NAME,CUS_LVL_MEMBER_NAME ,CUS_SITE_LVL_MEMBER_NAME,DCS_LVL_NAME,DCS_LVL_MEMBER_NAME,TIM_LVL_NAME,TIM_LVL_MEMBER_VALUE,VALUE_NUMBER,ORDER_TYPE_FLAG,DELETED_FLAG ,SOR_LVL_NAME,SOR_LVL_MEMBER_NAME,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/07/15,5,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/08/15,6,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/09/15,7,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/10/15,8,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/11/15,9,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2025/12/15,10,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2026/01/15,11,,NO,,,END
+OPS,,Bookings History: Booked Item by Booked Date,Item,AS4751300,Organization,002,Customer Site,923497,1301483,Demand Class,DC1,Day,2026/02/15,12,,NO,,,END

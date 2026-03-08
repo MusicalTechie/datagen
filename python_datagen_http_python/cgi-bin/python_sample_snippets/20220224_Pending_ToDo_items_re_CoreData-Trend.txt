@@ -1,0 +1,22 @@
+            # ---
+            # - TEMPORARY CODE BLOCK as of 2022-Jan-20
+            # ---
+            # - For now presume all combinations are using a simple slope for growth in sales.
+            # -
+            # - That is:
+            # -     y=mx+b
+            # -         - "m" is a randomly generated positive slope
+            # -         - "x" is the period number since the start of history (e.g., Month #1, #2, #3... #36)
+            # -         - "b" is the y-intercept or "starting value"
+            # -         - "y" is the resulting sales value
+            # -
+            # - Pending code improvements related to managing data-generation include:
+            # -         - handling multiple period lengths (e.g., WEEK, MONTH)
+            # -         - handling multiple trend types (e.g., LINE, SEASONAL, COMBINED, INTERMITTENT)
+            # -         - saving the values used for a given combination so they can be continued in future periods of generated data
+            # -         - handling multiple types of curves for a given combination (e.g. NPI, CORE, EOL)
+            # -         - calculating inventory (manufacturing of new inventory, consumption, net available)
+            # -         - calculating safety stock (an initial value that one hopes AI/ML will later improve on)
+            # -         - calculating LABELS for the AI/ML to learn with (e.g., one or more "better/worse" columns)
+            # -
+            # ---

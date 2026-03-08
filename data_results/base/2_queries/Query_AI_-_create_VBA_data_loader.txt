@@ -1,0 +1,39 @@
+An excel ".xlsm" file has a worksheet named "COREDATA_base" to hold raw data that will need to be cleared and reloaded from an external ".csv" file.  That data will then be used by a pivot table in another worksheet named "Pivot_and_Graph".
+
+Create a VBA script named "CUSTOM_Load_Source_Data" for excel that will perform the following:
+
+0010	All variables created should begin with the prefix "v_"
+
+0020	Add a popup that asks the user for input using a prompt "About to load data from CSV file.  This process can take several minutes.  Do you want to continue?".  If the answer is "No" then exit.  If the answer is "Yes" then continue.
+
+0100	Go to worksheet "COREDATA_base"
+
+0110	Clear all values from cell "B3" through the last populated row in the worksheet that has a higher row number than 3.  Delete all rows from row 4 through the end of the worksheet to remove all formatting and artifacts.
+
+0210	Look in the same directory as the excel file to find a source file named "COREDATA2_base.csv".
+
+0220	Read through rows of “COREDATA2_base.csv” but skip over the first row (header row) and paste all subsequent row contents using the “paste as value” into the cells of worksheet “COREDATA_base” starting at position “B3” and moving to the next higher row number in the source data and in the worksheet. These values, when pasted into the excel cells, should NOT include bounding double-quotes.
+
+0230	Determine the number of rows that have been inserted from the source file.  Create a range using variable "v_range_for_pivot_table" from "B2" to column "AD" and the last populated row from the source file (e.g. 12690).  Example:  v_range_for_pivot_table = "B3:AD12690" ).
+
+0240	Copy the format from row 3 and paste from row 4 through the last populated row in "COREDATA_base".
+
+0250	Stop and display the data.
+
+0305	Add a popup that informs the user "About to update the pivot table.  This process can take several minutes.  Click to 'OK' to continue." and offer a option with "OK".  When the user selections option "OK" then continue. 
+
+0310	Go to worksheet "Pivot_and_Graph".  Select cell "A3".
+
+0320	Update (change) the pivot table's data source to be the range stored in v_range_for_pivot_table
+
+0330	Refresh the pivot table.  Clear all pivot table filters.
+
+0340	In column "A", select the row where the cell value is “Grand Total” and store the row number in a variable v_last_pivot_table_row.
+
+0350    Select cell “A1”.  Select cell “A3”.  Perform the programmatic equivalent of right-clicking on the cell and selecting the option “Expand/Collapse”, then perform the programmatic equivalent of selecting “"Collapse entire field".  This should ONLY affect rows in column “A” from row 3 through v_last_pivot_table_row-1.
+
+0360	Delete all rows greater than row (v_last_pivot_table_row + 1).
+
+0350	Select column “A1”.  Then select column “A3”.
+
+0410	Close any open popups.  Close any open files.  Inform the user that the process is finished with a popup that notes "Data cleared and reloaded.  Pivot table range has been updated and the table refreshed.".

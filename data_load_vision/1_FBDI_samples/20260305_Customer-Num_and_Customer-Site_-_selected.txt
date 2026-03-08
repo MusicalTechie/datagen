@@ -1,0 +1,17 @@
+
+
+Customer Name			Cus_Lvl_Member_Name	Cus_Site_Lvl_Member_Name
+---------------			--------------------	-------------------------
+Accelworks			923497			1359648
+Business World			16080			1091
+Computer Service and Rentals	10060-A			1310641
+
+
+                v_variable_f09 = "923497"
+                v_variable_f10 = "1359648"
+
+                v_variable_f09 = "16080"
+                v_variable_f10 = "1091"
+
+                v_variable_f09 = "10060-A"
+                v_variable_f10 = "1310641"

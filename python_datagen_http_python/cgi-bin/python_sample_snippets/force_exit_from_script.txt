@@ -1,0 +1,12 @@
+
+    # ---
+    # - Optional test line
+    # ---
+    if 1 == 2:
+        print('-----')
+        print('- Forced exit!')
+        print('-----')
+        print(' ')
+        sleep(1)
+        quit()
+

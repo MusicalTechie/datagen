@@ -1,0 +1,40 @@
+If the goal was to set up a basic Oracle Fusion/Cloud SCM (supply chain management) environment to perform basic planning activities (S&OP, Demand Planning, Supply Planning, and Replenishment planning), what is the likely minimum amount of information required?  Possible examples for consideration are shown following this paragraph; assess and improve as appropriate.
+
+REQUIRED:
+- at least one "legal entity"
+- at least one "business unit"
+- at least one "calendar" and knowledge of monthly, weekly, or daily periods for each type of plan
+- at least one "item"
+- at least one "organization"
+- at least one "customer"
+- at least one "item catalog" (which acts as a product hierarchy)
+- at least one "assignment set"
+- at least one forecast-capable combination per item (e.g. item-organization-customer or item-organization or item-customer).
+- at least 24 periods (and likely 24 calendar months regardless) of historical sales information ("bookings history" or "sales history")
+- at least 3 periods periods of open orders in the past and 3 to 6 periods of open orders in the future.
+- at least one FBDI file to load items
+- at least one FBDI file to load locations
+- at least one FBDI file to load bookings-history and/or shipment-history
+- at least one FBDI file to open sales orders
+- at least one "S&OP plan" with an associated "calendar" and "assignment set"
+- at least one "demand plan" with an associated "calendar" and "assignment set"
+- at least one "supply plan" with an associated "calendar" and "assignment set"
+- at least one "replenishment plan" with an associated "calendar" and "assignment set"
+- at least one "page layout" for each type of plan
+- at least one "table" for each type of plan (which is assigned to a "page layout" and appears as a menu tab in the layout)
+
+
+OPTIONAL:
+- exception sets
+- ODBI or BIP report
+- lots and lot-control
+- subinventories (per organization)
+- segments (for planning)
+- custom measures
+- custom dimensions
+
+
+QUESTIONS:
+- Should the "locations" available be considered "organizations" or "customers" or should there be both separately?
+- To reasonably model a real company, would MANY items with ONE organization with MANY customers be sufficient?
+- what else may be REQUIRED vs OPTIONAL?

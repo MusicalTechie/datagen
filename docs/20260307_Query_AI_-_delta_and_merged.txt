@@ -1,0 +1,42 @@
+Assess the process to create the new python scripts DataGen_1310_Generate_organizations_initial.py, DataGen_1320_Generate_items_initial.py, DataGen_1330_Generate_customers_initial.py, DataGen_1340_Generate_matrix_initial.py, DataGen_1350_Generate_coredata_initial.py, and DataGen_1360_PostProcess_coredata.py using the following guidance:
+
+DataGen_1210_Generate_organizations_initial.py is a placeholder script; the new "delta" script will also be a dummy script for now and will is named "DataGen_1310_Generate_organizations_initial.py"
+
+DataGen_1220_Generate_items_initial.py generates an initial data set that is large; the new "delta" script "DataGen_1320_Generate_items_delta.py" will perform the same type of data generation but will only produce a random number of new ITEMs between the values of v_parm_dg_period_delta_items_min and v_parm_dg_period_delta_items_max and store the resulting new items (the "delta" from the "initial") in the file v_parm_path_items_delta.
+
+DataGen_1230_Generate_items_initial.py generates an initial data set that is large; the new "delta" script "DataGen_1330_Generate_customers_delta.py" will perform the same type of data generation but will only produce a random number of new ITEMs between the values of v_parm_dg_period_delta_customers_min and v_parm_dg_period_delta_customers_max and store the resulting new items (the "delta" from the "initial") in the file v_parm_path_customers_delta.
+
+DataGen_1240_Generate_matrix_initial.py generates an initial data set that is large; the new "delta" script "DataGen_1340_Generate_matrix_delta.py" will perform the same type of data generation but will only create associations between the new ITEM records that may have been generated in the file v_parm_path_items_delta and the combination of all customer records in (v_parm_path_customers_base and v_parm_path_customers_delta) if v_parm_app_source_type indicates "Random" and (v_parm_path_customers_base_custom alone) if v_parm_app_source_type indicates "Custom".
+
+Create a new python script named DataGen_1345_increment_period.py and include the following instructions down to the note indicated as [END_1345].
+
+There should only be one row and one value in the file v_parm_path_period_tracker and it should be in the form "YYYY-MM-DD". If the file is empty then add a row and a single value of v_parm_dg_date_present. If there is a date value present, add a "DAY" or "WEEK" or "MONTH" to the date that is present in the file based on the content of the variable v_parm_dg_period_type. Then save the new value back to the file v_parm_path_period_tracker (overwrite the single row and the single value) and keep the new value in a variable v_parm_dg_date_present_new.
+
+If v_parm_app_source_type indicates "Random" then:
+[a] combine the content of the file v_parm_path_items_base with v_parm_path_items_delta and v_parm_path_items_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_items_merged_new added to the file name (create or overwrite as appropriate).
+[b] combine the content of the file v_parm_path_customers_base with v_parm_path_customers_delta and v_parm_path_customers_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_customers_merged_new  (create or overwrite as appropriate).
+[c] combine the content of the file v_parm_path_matrix_base with v_parm_path_matrix_delta and v_parm_path_matrix_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_matrix_merged_new added to the file name (create or overwrite as appropriate).
+End if
+
+If v_parm_app_source_type indicates "Custom" then:
+[a] combine the content of the file v_parm_path_items_base and v_parm_path_items_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_items_merged_new  (create or overwrite as appropriate).
+[b] combine the content of the file v_parm_path_customers_base and v_parm_path_customers_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_customers_merged_new  (create or overwrite as appropriate).
+[c] combine the content of the file v_parm_path_matrix_base and v_parm_path_matrix_merged, then sort the combined file, remove any duplicate rows, and store in a new file with the name of v_parm_path_matrix_merged_new  (create or overwrite as appropriate).
+End if
+
+[END_1345]
+
+Modify DataGen_1350_Generate_coredata_delta.py (which is similar to DataGen_1250_Generate_coredata_initial.py) so that it only generates data from the date in v_parm_dg_date_present_new forward to the date in v_parm_dg_date_future_end and stores the resulting records in the file v_parm_path_coredata_delta.
+
+
+Create a new python script named DataGen_1355_prep_coredata.py and include the following instructions down to the note indicated as [END_1355].
+
+Create or overwrite the file v_parm_path_coredata_merged_new as appropriate by combining the contents of the file v_parm_path_coredata_merged with the contents of the file v_parm_path_coredata_delta. 
+
+[END_1355]
+
+Create a new python script named DataGen_1360_PostProcess_coredata.py to process the file v_parm_path_coredata_merged_new into the file v_parm_path_coredata2_merged_new in the same manner as python script DataGen_1260_PostProcess_coredata.py.
+
+Create a new python script named DataGen_1390_Compose_FBDI_Booking_History.py using the content of file v_parm_path_coredata_merged_new and saving the results in the file described by v_parm_path_fbdi_booking_new.
+
+Create a new python script DataGen_1012_Main_DataGen_Delta.py that calls all the new pythons scripts (numbered with "13xx") in sequence.

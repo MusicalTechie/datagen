@@ -1,0 +1,18 @@
+From the perspective of a developer who is new to the Oracle Fusion Cloud Supply Chain Management (SCM) environment, construct a concise and minimum path to setting up a basic "demand plan".  Presume the Oracle environment is empty except for an existing "Legal Entity", "Business Unit", and a single powerful user in possession of most roles.
+
+Produce the steps in order (e.g. creating ITEMS and CUSTOMERS and CUSTOMER-SITES before loading data).
+
+Considerations:
+- creating a master inventory organization to store ITEMs in
+- creating a 2 or 3 additional organizations to selectively attach ITEMs to
+- creating a catalog objects for ITEM HIERARCHY, CUSTOMER HIERARCHY, etc
+- create or load ITEMS
+- create or load CUSTOMERS
+- form associations between ITEMS, ORGANIZATIONS, CUSTOMERS, CUSTOMER-SITES
+- load order history via FBDI file (e.g. ScpBookingHistoryImportTemplate.xlsm) (bookings-history or shipment-history or open orders)
+- uploading FBDI files to UCM in scm/planningDataLoader/import, log review, typical issues
+- use or necessity of "demand class"
+- use or necessity of sales reps
+- creation of a "demand plan" with necessary prerequisites (items, customers, organizations, customer sites, calendar type, etc)
+
+

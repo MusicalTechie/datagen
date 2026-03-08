@@ -1,0 +1,35 @@
+The new python script DataGen_1014_Main_Approve_and_consolidate_delta.py needs to be simplified to a simple query that asks the user "Approve consolidation of new delta records?" and if the user answers with "Y" or "Yes" (case insensitive), then do the following:
+
+Create an overall success status variable "v_approval_success_status" and set it TRUE.
+
+Copy the file indicated by v_parm_path_items_merged into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+
+Copy the file indicated by v_parm_path_items_merged_new into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_customers_merged into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_customers_merged_new into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_organizations_merged into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_organizations_merged_new into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_matrix_merged into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+Copy the file indicated by v_parm_path_matrix_merged_new into the directory v_parm_path_merged_backup and rename the file by adding a timestamp prefix in the form of "YYYYMMDD_HHMMSS_".  If the move and rename is successful leave v_approval_success_status in its current status, otherwise set v_approval_success_status to FALSE.
+
+If v_approval_success_status is FALSE, give the user a message of "There was an error backing up the NEW content; the approval process will stop and the OLD and NEW data will be left in place.  Review and fix before attempting a new approval action".  Then move the "exit message" and exit the routine.
+
+Otherwise, delete the files indicated by v_parm_path_items_merged, v_parm_path_customers_merged, v_parm_path_organizations_merged, and v_parm_path_matrix_merged.
+
+
+If v_approval_success_status is FALSE, give the user a message of "There was an error deleting up the OLD content in the MERGED directory; the approval process will stop and the OLD and NEW data will be left in place.  Review and fix before attempting a new approval action".  Then move the "exit message" and exit the routine.
+
+Otherwise, rename v_parm_path_items_merged_new to v_parm_path_items_merged, v_parm_path_customers_merged_new to v_parm_path_customers_merged, v_parm_path_organizations_merged_new to v_parm_path_organizations_merged, and v_parm_path_matrix_merged_new to v_parm_path_matrix_merged.
+
+"Exit message"
+
+
+
+

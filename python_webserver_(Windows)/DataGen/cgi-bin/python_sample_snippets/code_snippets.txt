@@ -1,0 +1,69 @@
+# ----------
+# ---
+# - Disposable TEST code
+# ---
+# ----------
+
+
+# Sample JSON-to-LIST and PRINT
+# v_test_string = '[{"ItmLvlName1": "Business", "ItmLvlName2": "Brand", "ItmLvlName3": "Product_Family", "ItmLvlName4": "Item"}' \
+#                 ',{"ItmLvlName1": "Business", "ItmLvlName2": "Brand", "ItmLvlName3": "Product_Family", "ItmLvlName4": "Item"}]'
+# v_test_list = json.loads(v_test_string)
+# v_test_count = len(v_test_list)
+# print('---')
+# print('Type   : ' + str( type(v_test_list) ) )
+# print('---')
+# print('Count  : ' + str(v_test_count) )
+# # print('---')
+# # print(*v_test_list, sep = "\n")
+# print('---')
+# for v_index in v_test_list:
+#     print(v_index)
+# print('---')
+# v_test_element = v_test_list[0]["ItmLvlName2"]
+# print('Element: ' + str( v_test_element ) )
+# print('---')
+# print("\n"*2)
+
+# ---
+# - Test variable load
+# ---
+# print ("... config file: ", v_configFilePath)
+# print ("... directory files: ", v_configDirContent)
+# print("    - loaded variable  [" + v_parm_flag_loglevel + "]")
+# print("    - loaded variable  [" + v_parm_app_name + "]")
+# print("    - loaded variable  [" + v_parm_app_version + "]")
+# print("    - loaded variable  [" + v_parm_app_environment + "]")
+# print("    - loaded variable  [" + v_parm_app_debug + "]")
+# print("    - loaded variable  [" + v_parm_app_name + "]")
+# print("    - loaded variable  [" + v_parm_app_version + "]")
+# print("    - loaded variable  [" + v_parm_app_environment + "]")
+# print("    - loaded variable  [" + v_parm_app_debug + "]")
+# print("    - loaded variable  [" + v_parm_path_drive + "]")
+# print("    - loaded variable  [" + v_parm_path_top + "]")
+# print("    - loaded variable  [" + v_parm_path_main + "]")
+# print("    - loaded variable  [" + v_parm_path_config + "]")
+# print("    - loaded variable  [" + v_parm_db_ + "]")
+# print("    - loaded variable  [" + v_parm_db_name + "]")
+# print("    - loaded variable  [" + v_parm_db_username + "]")
+# print("    - loaded variable  [" + v_parm_db_password + "]")
+# print("    - loaded variable  [" + v_parm_db_wallet + "]")
+# print("    - loaded variable  [" + v_parm_db_host + "]")
+# print("    - loaded variable  [" + v_parm_db_port + "]")
+# print("    - loaded variable  [" + v_parm_co_name + "]")
+# print("    - loaded variable  [" + v_parm_co_addr1 + "]")
+# print("    - loaded variable  [" + v_parm_co_addr2 + "]")
+# print("    - loaded variable  [" + v_parm_co_city + "]")
+# print("    - loaded variable  [" + v_parm_co_region + "]")
+# print("    - loaded variable  [" + v_parm_co_country + "]")
+# print("    - loaded variable  [" + v_parm_co_mailcode + "]")
+# print("    - loaded variable  [" + v_parm_co_email + "]")
+# print("    - loaded variable  [" + v_parm_dg_item_hier_lvls + "]")
+# print("    - loaded variable  [" + v_parm_dg_item_hier_names + "]")
+# print("    - loaded variable  [" + v_parm_dg_items + "]")
+# print("    - loaded variable  [" + v_parm_dg_loc_hier_lvls + "]")
+# print("    - loaded variable  [" + v_parm_dg_loc_hier_names + "]")
+# print("    - loaded variable  [" + v_parm_dg_locs + "]")
+# print("    - loaded variable  [" + v_parm_dg_attach_rate + "]")
+# print("    - loaded variable  [" + v_parm_dg_num_dmd_trends + "]")
+# print("    - loaded variable  [" + v_parm_dg_dmd_trends + "]")

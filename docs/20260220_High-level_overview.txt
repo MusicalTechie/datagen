@@ -1,0 +1,67 @@
+
+Create the appropriate document to describe this application base on the following application features:
+
+Application purpose:
+Generate random but representative data that emulates the operation of a manufacturing or distribution company for the purposes of emulating a supply chain with a current focus on supporting on "Demand Management" (forecasting), "Supply Planning", and "Replenishment Planning".  Random data (with controls and limits) is more useful for populating the intended applications because it forces implementors and/or developers to build for the general case, have more robust error handling, and not be focused on a small number of perfect data elements.  Additionally, random data can be adjusted to occasionally insert errors in order to test error handling.
+
+The tool will have two states of operation:  (1) generate a large amount of initial information (e.g. 36 months of history) and (2) read the pattern for previously-generated information and continue the pattern with one new period worth of information (a day or a week or a month of new information).  This emulates continued business operations.
+
+Data types generated:
+- <exists>  "Calendar" file with daily, weekly, and/or monthly time buckets
+- <exists>  "Item" file describing products to be purchased and/or manufactured and/or distributed
+- <exists>  "Location" file describing where products will be assigned (manufactured, delivered)
+- <pending> "Customer" file describing end-clients to receive "finished goods" (FG)
+- <exists>  "Matrix" file data that pairs "items" with "locations" in a random but representative manner
+- <exists>  "Core Data" file that holds random but representative order history (bookings history, shipment history)
+
+Technology:
+- python
+- python libraries
+- CSV files
+- EXCEL files
+
+Method:
+1) Manually created "calendar" is prepared in Excel by a user.  This calendar reflects a particular end-client or project need.
+
+2) DataGen_1010_Main_DataGen_Initial.py
+   - Main python script that calls all subsequent scripts
+   - Loads a config file "config_main.ini" from the "data_config" subdirectory that defines many variables
+   - Uses an IF block with a 1=1 condition to enable execution of any one sub-procedure and 1=2 to ignore it.
+   - calls to sub-procedures are done this way to allow variables loaded in DataGen_1110_Load_config_main.py to remain global
+
+3) DataGen_1110_Load_config_main.py
+   - Loads the contents of the config file and stores those in global variables
+
+4) DataGen_1210_Generate_items_initial.py
+   - Generate items that fit a particular naming pattern
+   - The number of items generated varies within limits established in the config_file contents.
+   - A pending roadmap option will be allowing a alternate manually generated file to be used as a source
+
+5) DataGen_1220_Generate_locations_initial.py
+   - Generate locations that fit a particular naming pattern
+   - The number of locations generated varies within limits established in the config_file contents.
+   - A pending roadmap option will be allowing a alternate manually generated file to be used as a source
+
+6) DataGen_1230_Generate_matrix_initial.py
+   - Combined ITEMS with CUSTOMERS based on a probability defined in an "attachment rate" value from the config_file
+   - Not all items will be held, manufactured, or delivered from/to any one location... only a percentage (attachment rate).
+   - Each of these pairings is commonly referred to as a "combination".
+   - For each combination create attributes such as the forecasting type.  These then remain static so future periods of generated data can continue the pattern.
+
+7) DataGen_1240_Generate_coredata_initial.py
+   - for each combination of ITEM-LOCATION, read attributes and generate required periods of data.
+   - A pending roadmap option will be to add the incremental per-period data-generation to augment existing data files.
+
+8) DataGen_1250_PostProcess_coredata.py
+   - Process the data from the prior step to include calculations that span periods (rows)
+   - An example of such processing would be moving through periods (rows) to calculate a "rolling average".
+   - Output from this script will be ready for import into a local Excel file for review or into a larger target application.
+   - Target applications include "Oracle Fusion Cloud SCM", "SnowFlake", "SAP", etc.
+
+Roadmap
+   - add per-period data generation (same python scripts with parameters or by copying scripts to a new focused variant)
+   - build some python versions of the excel dashboards currently updated manually
+   - attach to a web-based (AWS) application framework that also serves iOS and Android
+   - add the ability to extract data from and write data to Oracle Fusion instances directly (REST, SOAP, or Oracle FBDI files)
+   - add the ability to have a "sys admin" level login to administer the app and "end user" level for regular users.
+   - add the ability to enable or disable the application in a clean manner with appropriate messages (e.g. when client ends contract).
