@@ -1,5 +1,5 @@
 # ==================================================
-# = File:        DataGen_1310_Generate_organizations_initial.py
+# = File:        DataGen_1310_Generate_organizations_delta.py
 # = Purpose:     Placeholder for ORGANIZATIONS delta (dummy script for now)
 # ==================================================
 # = Notes, Warnings, Requirements:

@@ -1,7 +1,7 @@
 #!C:\Users\Administrator\AppData\Local\Programs\Python\Python310\python.exe
 
 # ==================================================
-# = File:	    DataGen_1240_Generate_orders_initial.py
+# = File:	    DataGen_1240_Generate_coredata_initial.py
 # = Purpose:	Create initial ORDERS
 # ==================================================
 # = Notes, Warnings, Requirements:

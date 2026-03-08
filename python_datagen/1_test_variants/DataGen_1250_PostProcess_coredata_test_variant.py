@@ -1,6 +1,6 @@
 
 # ==================================================
-# = File:	    DataGen_1250_PostProcess_coredata2.py
+# = File:	    DataGen_1250_PostProcess_coredata_test_variant.py
 # = Purpose:	Post-process the coredata2 file to calculate values such as "rolling averages"
 # =
 # = WARNING:

@@ -1,6 +1,6 @@
 
 # ==================================================
-# = File:	    DataGen_-1110-_Load_config_-_main.py
+# = File:	    DataGen_1110_Load_config_main_standalone.py
 # = Purpose:	Load primary application parameters
 # ==================================================
 # = Notes, Warnings, Requirements:

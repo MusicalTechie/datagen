@@ -1,7 +1,7 @@
 #!C:\Users\Administrator\AppData\Local\Programs\Python\Python310\python.exe
 
 # ==================================================
-# = File:	    DataGen_1250_PostProcess_coredata2.py
+# = File:	    DataGen_1250_PostProcess_coredata.py
 # = Purpose:	Post-process the coredata2 file to calculate values such as "rolling averages"
 # =
 # = WARNING:

@@ -1,6 +1,6 @@
 
 # ==================================================
-# = File:	    DataGen_-1010-_Main_-_DataGen_Initial.py
+# = File:	    DataGen_1010_Main_DataGen_Initial.py
 # = Purpose:	Launch initial DataGen app, read config file, and allow user to take action
 # ==================================================
 # = Notes, Warnings, Requirements:

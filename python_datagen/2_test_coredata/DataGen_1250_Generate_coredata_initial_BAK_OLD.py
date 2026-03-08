@@ -1,6 +1,6 @@
 
 # ==================================================
-# = File:	    DataGen_1240_Generate_orders_initial.py
+# = File:	    DataGen_1250_Generate_coredata_initial_BAK_OLD.py
 # = Purpose:	Create initial ORDERS
 # ==================================================
 # = Notes, Warnings, Requirements:

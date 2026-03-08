@@ -1,6 +1,6 @@
 
 # ==================================================
-# = File:	    DataGen_1210_Generate_items_initial.py
+# = File:	    DataGen_1220_Generate_items_initial.py
 # = Purpose:	Create initial list of ITEMS
 # ==================================================
 # = Notes, Warnings, Requirements:
