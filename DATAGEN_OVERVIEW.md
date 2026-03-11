@@ -114,7 +114,9 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 
 ---
 
-## 5. Acquiring Data from Oracle Fusion via REST — 1410
+## 5. Acquiring Data from Oracle Fusion via REST — 1410 and 1420
+
+### 5.1 1410 — Acquire ITEMs
 
 **Script:** `DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py`
 
@@ -140,6 +142,27 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 
 **Use case:** Pull current item master data from Oracle Fusion SCM for use as a Custom item source, for comparison with generated data, or as input to downstream scripts. Can be run standalone or as part of a larger pipeline.
 
+### 5.2 1420 — Acquire CUSTOMERs
+
+**Script:** `DataGen_1420_Acquire_CUSTOMERs_from_Oracle_via_REST.py`
+
+**Purpose:** Call an **Oracle Fusion SCM** REST API to **retrieve a list of CUSTOMERs** (shipping customers LOV) from a designated Fusion environment. The result is written to a CSV file for use as a source of customer data (e.g. for Custom source type or validation).
+
+**Operation:**
+
+1. **Configuration**  
+   Uses the same **FUSION_SCM** parameters as 1410, and **`v_parm_path_customers_from_source`** (output file path) from the PATHS section.
+
+2. **REST API**  
+   - Endpoint (defined in the script): `/fscmRestApi/resources/11.13.18.05/shippingCustomersLOV`.  
+   - Full URL and auth behave the same as 1410.
+
+3. **Pagination and output**  
+   - Same pagination (limit/offset, hasMore, totalResults/totalItems) and CSV format as 1410.  
+   - All customers (and their attributes) are written to **`v_parm_path_customers_from_source`** as quote-delimited, comma-separated CSV.
+
+**Use case:** Pull current shipping customer data from Oracle Fusion SCM for use as a Custom customer source or for validation. Can be run standalone or as part of a larger pipeline.
+
 ---
 
 ## Typical Workflows
@@ -150,5 +173,6 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 | **Add one or more time periods of new data** | Run **1012** (Delta) one or more times → use **1390** output (FBDI new) for upload. |
 | **Lock in deltas as the new baseline** | Run **1014** (Approve and consolidate) after 1012 when ready → then continue with further 1012 runs; 1290 can be used on the consolidated merged coredata if you need a full “post-consolidation” FBDI export. |
 | **Acquire item list from Oracle Fusion** | Run **1410** (Acquire ITEMs from Oracle via REST) → use `v_parm_path_items_from_source` CSV as item source or for validation. |
+| **Acquire customer list from Oracle Fusion** | Run **1420** (Acquire CUSTOMERs from Oracle via REST) → use `v_parm_path_customers_from_source` CSV as customer source or for validation. |
 
 Configuration (paths, hierarchies, period type, delta counts, FBDI paths, Fusion REST settings, etc.) is centralized in the main config file loaded by **DataGen_1110_Load_config_main**.

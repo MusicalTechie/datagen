@@ -58,8 +58,9 @@ The **1012 Delta** pipeline is implemented and operational:
 | Component | Status | Description |
 |-----------|--------|-------------|
 | **1410 Acquire ITEMs from Oracle via REST** | Done | Calls Oracle Fusion SCM REST API (itemsLOV), paginates with limit/offset until no more records, writes all items and attributes to `v_parm_path_items_from_source` as quote-delimited CSV. Uses config: FUSION_SCM (name, env, URL, username, password) and PATH_ITEMS_FROM_SOURCE. |
+| **1420 Acquire CUSTOMERs from Oracle via REST** | Done | Calls Oracle Fusion SCM REST API (shippingCustomersLOV), same pagination and pattern as 1410, writes all customers and attributes to `v_parm_path_customers_from_source` as quote-delimited CSV. Uses config: FUSION_SCM and PATH_CUSTOMERS_FROM_SOURCE. |
 
-**Evidence:** Running `DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py` (with valid Fusion config) retrieves item data and writes the CSV; optional test block can force one iteration and display the latest response status and JSON.
+**Evidence:** Running `DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py` (with valid Fusion config) retrieves item data and writes the CSV; optional test block can force one iteration and display the latest response status and JSON. Running `DataGen_1420_Acquire_CUSTOMERs_from_Oracle_via_REST.py` retrieves shipping customer data and writes to the customers-from-source CSV.
 
 ---
 
@@ -140,7 +141,7 @@ Prior to or in parallel with web/mobile integration, the following improvements 
 [Browser / PWA]  ←→  [Backend API]  ←→  [DataGen Python]
        ↓                     ↓                    ↓
    Menus, tables,      Start job, status,   1010, 1012, 1014,
-   buttons, links      list results,        1290, 1390, 1410
+   buttons, links      list results,        1290, 1390, 1410, 1420
                       submit FBDI                ↓
                             ↓              [Files / S3]
                       [Oracle Fusion
@@ -180,6 +181,7 @@ Prior to or in parallel with web/mobile integration, the following improvements 
 | **Approve and consolidate (1014)** | Working; promotes merged_new to merged with backup. |
 | **FBDI for Oracle Fusion (1290/1390)** | Working; format ready for load; submission via REST is future work. |
 | **Acquire ITEMs from Oracle via REST (1410)** | Working; paginated REST call to Fusion itemsLOV; writes CSV to PATH_ITEMS_FROM_SOURCE. |
+| **Acquire CUSTOMERs from Oracle via REST (1420)** | Working; paginated REST call to Fusion shippingCustomersLOV; writes CSV to PATH_CUSTOMERS_FROM_SOURCE. |
 | **Recommended improvements** | Testing, config validation, non-interactive 1014, API-friendly entry points, secrets management. |
 | **Merge with Web/Mobile Template** | Planned; menu-driven UI to initiate scripts, review data, and submit FBDI to Oracle Fusion SCM via REST APIs in phases. |
 
