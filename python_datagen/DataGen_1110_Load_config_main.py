@@ -14,7 +14,7 @@
 # =  - Created:     2021-DEC-21     Allan Barnard
 # =  - Updated:     2022-APR-04     Allan Barnard, add COREDATA2 path options
 # =  - Updated:     2023-OCT-10     Allan Barnard, execute in Dropbox under Anaconda environment
-# =  - Updated:
+# =  - Updated:     2026-MAR-11     Allan Barnard, updating to allow "delta", "rest", cursor
 # =  - Updated:      
 # = 
 # ==================================================
@@ -374,6 +374,21 @@ v_parm_current = "PATH_MERGED_BACKUP"
 v_parm_path_merged_backup = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
 logging.debug("    - " + v_parm_current + " [" + v_parm_path_merged_backup + "]")
 
+# ---
+v_parm_current = "PATH_ITEMS_FROM_SOURCE"
+v_parm_path_items_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_path_items_from_source+ "]")
+# ---
+v_parm_current = "PATH_CUSTOMERS_FROM_SOURCE"
+v_parm_path_customers_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_path_customers_from_source+ "]")
+# ---
+v_parm_current = "PATH_COMBINATIONS_FROM_SOURCE"
+v_parm_path_combinations_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_path_combinations_from_source+ "]")
+
+
+
 
 # ---
 # - Pick up parameters from the config file group: DATABASE
@@ -411,6 +426,35 @@ v_parm_db_port = v_configParser[v_parm_group][v_parm_current]
 logging.debug("    - " + v_parm_current + " [" + v_parm_db_port + "]")
 # ---
 # sleep(1)
+
+
+# ---
+# - Pick up parameters from the config file group: FUSION_SCM
+# ---
+logging.debug("")
+v_parm_group = "FUSION_SCM"
+logging.debug("... loading parameters from group [" + v_parm_group + "]")
+# ---
+v_parm_current = "FUSION_NAME"
+v_parm_fusion_name = v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_fusion_name + "]")
+# ---
+v_parm_current = "FUSION_ENV"
+v_parm_fusion_env = v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_fusion_env + "]")
+# ---
+v_parm_current = "FUSION_URL"
+v_parm_fusion_url = v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_fusion_url + "]")
+# ---
+v_parm_current = "FUSION_USERNAME"
+v_parm_fusion_username = v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_fusion_username + "]")
+# ---
+v_parm_current = "FUSION_PASSWORD"
+v_parm_fusion_password = v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_fusion_password + "]")
+# ---
 
 
 # ---

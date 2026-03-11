@@ -41,6 +41,7 @@
 # -     pip install xlrd
 # -
 # ---
+import sys
 import configparser
 import logging
 import os

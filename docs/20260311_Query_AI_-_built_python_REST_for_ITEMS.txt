@@ -1,0 +1,45 @@
+A new dummy script named "DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py" has been created.  The comment line "#-- Placeholder for REST call to Oracle" needs to be replaced with the following code creation request.
+
+The objective of this script is to make a REST API call to an Oracle Fusion SCM environment and acquire a list of ITEMs.  There could be very few items or many thousands.  Therefore the script will need to acquire records in blocks defined by "v_response_limit" and then loop (e.g. while-loop) until the REST response JSON shows that there are no remaining records.
+
+At the top of the script, another script "DataGen_1110_Load_config_main" is called to set a series of global variables.  These will be used to define many of the values required to populate REST API calls.
+
+
+v_parm_fusion_name is used to describe the human-readable name of the particular Oracle fusion environment
+v_parm_fusion_env = is used to define the human-readable DEV, TEST, or PROD designation (or similar)
+v_parm_fusion_url = is the primary URL to access the environment (a "/" and a REST endpoint can be added to this)
+v_parm_fusion_username = the "basic authorization" username to log into the fusion environment with a REST call
+v_parm_fusion_password = the "basic authorization" password to log into the fusion environment with a REST call
+v_parm_path_items_from_source = the output file for any ITEM values acquired via REST API calls
+
+The REST API endpoint needs to be defined within the "DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py" itself.  Any python libraries required to perform REST actions needs to be added in the "import" section at the top of the script.
+
+The REST api endpoint will be defined explicitly in the script (not global variables) as:
+
+v_api_rest_endpoint = "/fscmRestApi/resources/11.13.18.05/itemsLOV"
+v_api_rest_fullpath = v_parm_fusion_url appended to v_api_rest_endpoint with a single forward slash ("/") in between
+v_api_rest_api_headers = "Content-Type=application/json"
+
+v_api_rest_rec_limit = 500
+v_api_rest_rec_offset = 0
+
+v_api_rest_response_status_array
+v_api_rest_response_response_array
+v_api_rest_response_items_array
+
+REST API URL parameters can be added to the URL with a "?", for example "?limit=500".
+
+The objective is to start acquiring values in a while-loop (or similar) with a REST offset of "0", traced in the variable v_api_rest_rec_offset, with a limited record-response based on the value stored in v_api_rest_rec_limit.  For each call, store the JSON status in the array "v_api_rest_response_status_array" and the json response in an array v_api_rest_response_response_array.  Check the response for the values "hasMore" and "totalItems".  If "hasMore" is false or "totalItems" is zero, terminate the loop.
+
+
+The array v_api_rest_response_response_array needs to have all the items and the attributes stored to a quote-delimited comma-separated CSV file v_parm_path_items_from_source.  If the file doesn't exist, create it.  If it does exist, overwrite it.
+
+
+
+
+
+
+
+
+
+
