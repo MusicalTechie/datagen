@@ -114,7 +114,7 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 
 ---
 
-## 5. Acquiring Data from Oracle Fusion via REST — 1410 and 1420
+## 5. Acquiring Data from Oracle Fusion via REST — 1410, 1420, 1430, 1440
 
 ### 5.1 1410 — Acquire ITEMs
 
@@ -163,6 +163,26 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 
 **Use case:** Pull current shipping customer data from Oracle Fusion SCM for use as a Custom customer source or for validation. Can be run standalone or as part of a larger pipeline.
 
+### 5.3 1430 — Acquire CUSTOMER-SITEs
+
+**Script:** `DataGen_1430_Acquire_CUSTOMER-SITESs_from_Oracle_via_REST.py`
+
+**Purpose:** Call an **Oracle Fusion SCM** REST API to **retrieve customer account sites** (customerAccountSitesLOV) from a designated Fusion environment. The result is written to a CSV for use as a source of customer-site data.
+
+**Operation:** Same FUSION_SCM and pagination pattern as 1410/1420. Endpoint: `/fscmRestApi/resources/11.13.18.05/customerAccountSitesLOV`. Output: **`v_parm_path_customersites_from_source`** (quote-delimited CSV). Optional test block (`1==1`) can limit to one page for debugging.
+
+**Use case:** Pull customer account sites from Oracle Fusion SCM for Custom source or validation. Run standalone or as part of a pipeline.
+
+### 5.4 1440 — Acquire ORGANIZATIONs
+
+**Script:** `DataGen_1440_Acquire_ORGANIZATIONs_from_Oracle_via_REST.py`
+
+**Purpose:** Call an **Oracle Fusion SCM** REST API to **retrieve supply network organizations** from a designated Fusion environment. The result is written to a CSV for use as a source of organization data.
+
+**Operation:** Same FUSION_SCM and pagination pattern as 1410/1420. Endpoint: `/fscmRestApi/resources/11.13.18.05/supplyNetworkOrganizations`. Output: **`v_parm_path_organizations_from_source`** (quote-delimited CSV). Optional test block (`1==1`) can limit to one page for debugging.
+
+**Use case:** Pull supply network organizations from Oracle Fusion SCM for Custom source or validation. Run standalone or as part of a pipeline.
+
 ---
 
 ## Typical Workflows
@@ -174,5 +194,7 @@ Both scripts map internal fields (period, item, location, measures, etc.) to the
 | **Lock in deltas as the new baseline** | Run **1014** (Approve and consolidate) after 1012 when ready → then continue with further 1012 runs; 1290 can be used on the consolidated merged coredata if you need a full “post-consolidation” FBDI export. |
 | **Acquire item list from Oracle Fusion** | Run **1410** (Acquire ITEMs from Oracle via REST) → use `v_parm_path_items_from_source` CSV as item source or for validation. |
 | **Acquire customer list from Oracle Fusion** | Run **1420** (Acquire CUSTOMERs from Oracle via REST) → use `v_parm_path_customers_from_source` CSV as customer source or for validation. |
+| **Acquire customer-site list from Oracle Fusion** | Run **1430** (Acquire CUSTOMER-SITEs from Oracle via REST) → use `v_parm_path_customersites_from_source` CSV as customer-site source or for validation. |
+| **Acquire organization list from Oracle Fusion** | Run **1440** (Acquire ORGANIZATIONs from Oracle via REST) → use `v_parm_path_organizations_from_source` CSV as organization source or for validation. |
 
 Configuration (paths, hierarchies, period type, delta counts, FBDI paths, Fusion REST settings, etc.) is centralized in the main config file loaded by **DataGen_1110_Load_config_main**.

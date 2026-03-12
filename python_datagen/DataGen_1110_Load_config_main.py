@@ -374,6 +374,7 @@ v_parm_current = "PATH_MERGED_BACKUP"
 v_parm_path_merged_backup = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
 logging.debug("    - " + v_parm_current + " [" + v_parm_path_merged_backup + "]")
 
+
 # ---
 v_parm_current = "PATH_ITEMS_FROM_SOURCE"
 v_parm_path_items_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
@@ -383,11 +384,17 @@ v_parm_current = "PATH_CUSTOMERS_FROM_SOURCE"
 v_parm_path_customers_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
 logging.debug("    - " + v_parm_current + " [" + v_parm_path_customers_from_source+ "]")
 # ---
+v_parm_current = "PATH_CUSTOMERSITES_FROM_SOURCE"
+v_parm_path_customersites_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_path_customersites_from_source+ "]")
+# ---
+v_parm_current = "PATH_ORGANIZATIONS_FROM_SOURCE"
+v_parm_path_organizations_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
+logging.debug("    - " + v_parm_current + " [" + v_parm_path_organizations_from_source+ "]")
+# ---
 v_parm_current = "PATH_COMBINATIONS_FROM_SOURCE"
 v_parm_path_combinations_from_source = v_parm_path_main + v_configParser[v_parm_group][v_parm_current]
 logging.debug("    - " + v_parm_current + " [" + v_parm_path_combinations_from_source+ "]")
-
-
 
 
 # ---

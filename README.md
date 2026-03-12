@@ -129,7 +129,7 @@ Adjusting these values changes the shape, size, and realism of the generated dat
 - **Per-period data generation** – Same Python scripts with parameters or dedicated script variants to add one period (day/week/month) to existing data.
 - **Python dashboards** – Replace or complement manually updated Excel dashboards with Python-generated views.
 - **Web and mobile** – Integrate with a web-based (e.g., AWS) application framework serving iOS and Android.
-- **Oracle Fusion integration** – Extract from and load to Oracle Fusion (REST, SOAP, or Oracle FBDI files). **DataGen_1410_Acquire_ITEMs_from_Oracle_via_REST.py** acquires item master data from Fusion via REST (paginated) and writes to a CSV; **DataGen_1420_Acquire_CUSTOMERs_from_Oracle_via_REST.py** acquires shipping customer data (shippingCustomersLOV) and writes to a CSV. See **DATAGEN_OVERVIEW.md** (section 5).
+- **Oracle Fusion integration** – Extract from and load to Oracle Fusion (REST, SOAP, or Oracle FBDI files). **DataGen_1410** acquires item master (itemsLOV); **DataGen_1420** shipping customers (shippingCustomersLOV); **DataGen_1430** customer account sites (customerAccountSitesLOV); **DataGen_1440** supply network organizations (supplyNetworkOrganizations). All write quote-delimited CSV to their configured paths. See **DATAGEN_OVERVIEW.md** (section 5).
 - **Access control** – Sys-admin vs. end-user roles and login.
 - **Application lifecycle** – Clean enable/disable of the application with appropriate messaging (e.g., when a client contract ends).
 
